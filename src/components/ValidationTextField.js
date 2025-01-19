@@ -16,12 +16,16 @@ export default function ValidationTextField({field}) {
           {field.label}
           {field.required && <span className="text-[red]"> *</span>}
         </div>
-        <div className={`text-left mb-[5px] font-normal text-[18px] ${field.label2Padding}`}>
-          {field.label2}
-        </div>
-        <div className={`text-left mb-[5px] font-normal text-[18px] ${field.label3Padding}`}>
-          {field.label3}
-        </div>
+        {field.label2 && 
+          <div className={`text-left mb-[5px] font-normal text-[18px] ${field.label2Padding}`}>
+            {field.label2}
+          </div>
+        }
+        {field.label3 && 
+          <div className={`text-left mb-[5px] font-normal text-[18px] ${field.label3Padding}`}>
+            {field.label3}
+          </div>
+        }
         <TextField
           slotProps={{
             input: {

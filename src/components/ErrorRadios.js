@@ -4,8 +4,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import FormLabel from '@mui/material/FormLabel';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 export default function ErrorRadios({field}) {
@@ -37,10 +35,24 @@ export default function ErrorRadios({field}) {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl sx={{ mt: 4, width: '100%' }} error={error} variant="standard">
-        <div className={`text-left mb-[5px] font-normal text-[18px] ${field.labelPadding}`}>{field.label}</div>
-        <div className="text-left mb-[5px] font-normal text-[18px] pl-5">
-          {field.label2}
+        <div className={`text-left mb-[5px] font-normal text-[18px] ${field.labelPadding}`}>
+          {field.label}
         </div>
+        {field.label2 && 
+          <div className={`text-left mb-[5px] font-normal text-[18px] ${field.label2Padding}`}>
+            {field.label2}
+          </div>
+        }
+        {field.label3 && 
+          <div className={`text-left mb-[5px] font-normal text-[18px] ${field.label3Padding}`}>
+            {field.label3}
+          </div>
+        }
+        {field.label4 && 
+          <div className={`text-left mb-[5px] font-normal text-[18px] ${field.label4Padding}`}>
+            {field.label4}
+          </div>
+        }
         <RadioGroup
           className={field.optionsPadding}
           aria-labelledby="demo-error-radios"
@@ -49,17 +61,17 @@ export default function ErrorRadios({field}) {
           onChange={handleRadioChange}
         >
           {field.options.map((option, index) => 
-            <FormControlLabel value={option} control={<Radio />} label={option} />
+            <FormControlLabel className="text-left" value={option} control={<Radio />} label={option} />
           )}
-          {(field.additionalFieldOption && value == field.additionalFieldOption) && 
+          {((field.additionalFieldOption && value == field.additionalFieldOption) || field.showAdditionalField) && 
             <TextField
               slotProps={{
                 input: {
                   readOnly: field.readOnly,
                 },
               }}
-              multiline={false}
-              maxRows={1}
+              multiline={field.additionalFieldMultiline}
+              maxRows={field.additionalFieldMaxrows}
               error={field.error}
               required={field.required}
               id="outlined-error-helper-text"

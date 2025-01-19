@@ -4,6 +4,12 @@ import HorizontalStep from './HorizontalStep.js';
 import Header from './Header.js';
 import Section1 from './Section1.js';
 import Section2 from './Section2.js';
+import Section3 from './Section3.js';
+import Section4 from './Section4.js';
+import Section5 from './Section5.js';
+import Section6 from './Section6.js';
+import Section7 from './Section7.js';
+import Section8 from './Section8.js';
 
 export default function Homepage() {
 	const [steps, setSteps] = useState([
@@ -42,6 +48,18 @@ export default function Homepage() {
 			label: 'Section 6',
 			active: false,
 			checked: false,
+		},
+		{
+			title: 7,
+			label: 'Section 7',
+			active: false,
+			checked: false,
+		},
+		{
+			title: 8,
+			label: 'Section 8',
+			active: false,
+			checked: false,
 			lastStep: true,
 		},
 	]);
@@ -76,6 +94,12 @@ export default function Homepage() {
 				<div className="max-w-[800px] mx-auto pb-[50px]">
 					{ (currentStep == 1) && <Section1 /> }
 					{ (currentStep == 2) && <Section2 /> }
+					{ (currentStep == 3) && <Section3 /> }
+					{ (currentStep == 4) && <Section4 /> }
+					{ (currentStep == 5) && <Section5 /> }
+					{ (currentStep == 6) && <Section6 /> }
+					{ (currentStep == 7) && <Section7 /> }
+					{ (currentStep == 8) && <Section8 /> }
 				</div>
 				<div className="flex justify-center gap-[20px] sticky bottom-[0px] font-semibold py-[10px] w-full bg-white z-[1]">
 					<div className="border-[1.5px] border-solid border-black text-black py-[5px] px-[30px] rounded-[5px] cursor-pointer hover:bg-black hover:border-black hover:text-white" style={{
