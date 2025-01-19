@@ -8,13 +8,22 @@ import TextField from '@mui/material/TextField';
 export default function CheckBoxGroup({field}) {
 
 	const [values, setValues] = React.useState(field.values);
+	const [showAdditionalField, setShowAdditionalField] = React.useState(false);
 
 	function handleCheckboxChange(value, event) {
-		if (value == field.additionalFieldValue) {
-			return 0;
+
+		let _values = values;
+
+		if (event.target.checked) {
+			_values.push(value);
+		} else {
+			const index = _values.indexOf(value);
+			if (index > -1) {
+				_values.splice(index, 1);
+			}
 		}
-		setValues(value);
-		console.log(event.target.checked);
+		setShowAdditionalField(_values.includes(field.additionalFieldOption));
+		setValues(_values);
 	}
 
 	return(
@@ -49,7 +58,7 @@ export default function CheckBoxGroup({field}) {
 			        </ListItem>
 	        	)}
 	        </List>
-	        {(field.additionalFieldOption && values == field.additionalFieldOption) && 
+	        {showAdditionalField && 
 	            <TextField
 	            	sx={{width: '100%', paddingLeft: `${field.optionsPadding}`, flex: '1'}}
 	              slotProps={{

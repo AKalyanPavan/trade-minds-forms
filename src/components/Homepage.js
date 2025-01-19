@@ -67,6 +67,9 @@ export default function Homepage() {
 	const [currentStep, setCurrentStep] = useState(1);
 
 	function proceedtoNextStep() {
+		if (currentStep == 8) {
+			return;
+		}
 		steps[currentStep - 1].checked = true;
 		steps[currentStep].active = true;
 		setCurrentStep(currentStep + 1);
@@ -74,6 +77,9 @@ export default function Homepage() {
 	}
 
 	function reverttoPreviousStep() {
+		if (currentStep == 1) {
+			return;
+		}
 		steps[currentStep - 2].checked = false;
 		steps[currentStep - 1].active = false;
 		setCurrentStep(currentStep - 1);
@@ -110,7 +116,7 @@ export default function Homepage() {
 					<div className="bg-[#387dff] py-[5px] px-[30px] rounded-[5px] text-white cursor-pointer hover:bg-black" style={{
 						transition: 'all 0.3s'
 					}} onClick={() => proceedtoNextStep()}>
-						Next
+						{(currentStep == 8) ? 'Submit' : 'Next'}
 					</div>
 				</div>
 			</div>
